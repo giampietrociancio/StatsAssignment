@@ -1,0 +1,27 @@
+---
+title: "Statistics Assignment"
+author: |
+  | Giampietro Ciancio 965991 
+  | Riccardo Valenti 979784        
+date: ""
+output: 
+  pdf_document
+bibliography: references.bib
+nocite: '@*'
+---
+
+
+```{r loadpackage, message=FALSE, warning=FALSE, echo=FALSE}
+library(tidyverse)
+library(tidyquant)
+library(ggthemes)
+library(rmarkdown)
+theme <- theme_economist() + 
+theme(axis.title.y = element_text(margin = margin(t = 0, r = 17, b = 0, l = 5)), 
+      axis.title.x =element_text(margin = margin(t = 17, r = , b = 5, l = 0)))
+price <- tq_get("PINS", get = "stock.prices", from = "2019-04-18", to = "2021-12-31") %>% 
+  .$close
+log.rt <- diff(log(price))
+
+```
+
